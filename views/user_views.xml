@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="users_form_elearn" model="ir.ui.view">
+        <field name="name">res.users.form.elearn</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="E-Learning">
+                    <group string="Profile">
+                        <field name="is_student"/>
+                    </group>
+                    <group string="Gamification">
+                        <field name="level"/>
+                        <field name="xp"/>
+                    </group>
+                    <group string="Enrollments">
+                        <field name="enrollment_ids">
+                            <list>
+                                <field name="course_id"/>
+                                <field name="state"/>
+                                <field name="enroll_date"/>
+                            </list>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

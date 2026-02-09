@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <menuitem id="menu_elearn_root" 
+        name = "Gamify Learning"/>
+
+        <menuitem id="menu_elearn_course"
+            name = "Courses"
+            parent = "menu_elearn_root"
+            action = "action_elearn_course"/>
+
+        <menuitem id="menu_elearn_lesson"
+            name = "Lessons"
+            parent = "menu_elearn_root"
+            action = "action_elearn_lesson"/>
+
+        <menuitem id="menu_elearn_enrollment"
+              name="Enrollments"
+              parent="menu_elearn_root"
+              action="action_elearn_enrollment"/>
+        
+</odoo>

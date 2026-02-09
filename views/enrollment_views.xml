@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   <record id="elearn_enrollment_kanban" model="ir.ui.view">
+        <field name="name">elearn.enrollment.kanban</field>
+        <field name="model">elearn.enrollment</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click" style="position: relative; padding-right: 120px; min-height: 150px;">
+                            <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px;">
+                                <field name="student_image" widget="image"/>
+                            </div>
+                            <strong>
+                                <h2>
+                                    <field name="users_id"/>
+                                </h2>
+                            </strong>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    
+    <record id="elearn_enrollment_form" model="ir.ui.view">
+        <field name="name">elearn.enrollment.form</field>
+        <field name="model">elearn.enrollment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px;">
+                        <field name="student_image" widget="image"/>
+                    </div>
+                    <group>
+                        <field name="users_id"/>
+                        <field name="course_id"/>
+                        <field name="state"/>
+                        <field name="enroll_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="elearn_enrollment_list" model="ir.ui.view">
+        <field name="name">elearn.enrollment.list</field>
+        <field name="model">elearn.enrollment</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="users_id"/>
+                <field name="course_id"/>
+                <field name="state"/>
+                <field name="enroll_date"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_elearn_enrollment" model="ir.actions.act_window">
+        <field name="name">Enrollments</field>
+        <field name="res_model">elearn.enrollment</field>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+
+</odoo>

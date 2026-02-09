@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="elearn_lesson_form" model="ir.ui.view">
+        <field name="name">elearn.lesson.form</field>
+        <field name="model">elearn.lesson</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="course_id"/>
+                        <field name="xp_reward"/>
+                        <field name="content"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="elearn_lesson_list" model="ir.ui.view">
+        <field name="name">elearn.lesson.list</field>
+        <field name="model">elearn.lesson</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="course_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_elearn_lesson" model="ir.actions.act_window">
+        <field name="name">Lessons</field>
+        <field name="res_model">elearn.lesson</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

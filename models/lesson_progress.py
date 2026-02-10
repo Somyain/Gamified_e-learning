@@ -6,7 +6,7 @@ class ElearnLessonProgress(models.Model):
     _description = "lesson Progress"
     
     _rec_name = "lesson_id"
-    user_id = fields.Many2one('res.users',string="Student",required=True)
+    user_id = fields.Many2one('res.partner',string="Student",required=True)
     lesson_id = fields.Many2one('elearn.lesson',string='Lesson',required=True)
 
     completed = fields.Boolean(string="Completed",default=False)

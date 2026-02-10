@@ -7,5 +7,4 @@ class ElearnLesson(models.Model):
     name = fields.Char(string="Lesson Title", required=True)
     course_id = fields.Many2one('elearn.course', string="Course", required=True)
     content = fields.Html(string="Lesson Content")
-
     xp_reward = fields.Integer(string="XP Reward", default=10)

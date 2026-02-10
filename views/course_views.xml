@@ -36,7 +36,7 @@
                         <page string="Enrollment">
                             <field name="enrollment_ids">
                                 <list editable="bottom">
-                                    <field name="users_id"/>
+                                    <field name="user_id"/>
                                     <field name="state"/>
                                     <field name="enroll_date"/>
                                 </list>

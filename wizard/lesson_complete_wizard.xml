@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="lesson_complete_wizard_form" model="ir.ui.view">
+        <field name="name">lesson.complete.wizard.form</field>
+        <field name="model">elearn.lesson.complete.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Complete Lesson">
+                <group>
+                    <field name="lesson_id"/>
+                    <field name="user_id" readonly="1"/>
+                    <button string="Confirm" type="object" name="action_confirm" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_complete_lesson_wizard" model="ir.actions.act_window">
+        <field name="name">Complete Lesson</field>
+        <field name="res_model">elearn.lesson.complete.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -14,7 +14,7 @@
                             </div>
                             <strong>
                                 <h2>
-                                    <field name="users_id"/>
+                                    <field name="user_id"/>
                                 </h2>
                             </strong>
                         </div>
@@ -34,11 +34,22 @@
                         <field name="student_image" widget="image"/>
                     </div>
                     <group>
-                        <field name="users_id"/>
+                        <field name="user_id"/>
+                        <field name="email"/>
                         <field name="course_id"/>
                         <field name="state"/>
                         <field name="enroll_date"/>
                     </group>
+                    <notebook>
+                        <page string="Lesson">
+                            <field name="lesson_ids">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="course_id"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -49,7 +60,7 @@
         <field name="model">elearn.enrollment</field>
         <field name="arch" type="xml">
             <list>
-                <field name="users_id"/>
+                <field name="user_id"/>
                 <field name="course_id"/>
                 <field name="state"/>
                 <field name="enroll_date"/>

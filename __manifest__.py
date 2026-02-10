@@ -11,11 +11,14 @@
     'data' : [
         'security/ir.model.access.csv',
         
+        'wizard/lesson_complete_wizard.xml',
+
         'views/course_views.xml',
         'views/lesson_views.xml',
         'views/enrollment_views.xml',
         'views/elearn_menu.xml',
         'views/user_views.xml',
+
     ],
     'installation':True,
     'appliation' :True,

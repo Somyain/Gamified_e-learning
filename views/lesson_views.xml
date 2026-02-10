@@ -7,6 +7,12 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <header>
+                        <button name="%(action_complete_lesson_wizard)d"
+                                type="action"
+                                string="Complete Lesson"
+                                class="btn-primary"/>
+                    </header>
                     <group>
                         <field name="name"/>
                         <field name="course_id"/>

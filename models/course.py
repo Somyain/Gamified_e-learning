@@ -11,7 +11,6 @@ class ElearnCourse(models.Model):
     lesson_count = fields.Integer('Lesson Count',compute='_compute_lesson_count')
 
     enrollment_ids = fields.One2many('elearn.enrollment','course_id',string="Enrollments")
-
     enrollment_count = fields.Integer(string="Enrollment Count",compute='_compute_enrollment_count')
 
     @api.depends('lesson_ids')

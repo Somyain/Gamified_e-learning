@@ -10,7 +10,7 @@ class ElearnCourse(models.Model):
     lesson_ids = fields.One2many('elearn.lesson','course_id',string="Lessons")
     lesson_count = fields.Integer('Lesson Count',compute='_compute_lesson_count')
 
-    enrollment_ids = fields.One2many('elearn.enrollment','course_id',string="Enrollments")
+    enrollment_ids = fields.One2many('elearn.enrollment.line','course_id',string="Enrollments")
     enrollment_count = fields.Integer(string="Enrollment Count",compute='_compute_enrollment_count')
 
     @api.depends('lesson_ids')
@@ -25,9 +25,9 @@ class ElearnCourse(models.Model):
             'name':'Lessons',
             'res_model':'elearn.lesson',
             'view_mode': 'list,form',
-            'domain': [('course_id', '=', self.id)],
+            'domain': [('enrollment_line_ids.course_id', '=', self.id)],
             'context': {
-                'default_course_id': self.id
+                'default_enrollment_line_ids.course_id': self.id
             }
         }
 
@@ -43,8 +43,8 @@ class ElearnCourse(models.Model):
             'name': 'Enrollments',
             'res_model': 'elearn.enrollment',
             'view_mode': 'list,form',
-            'domain': [('course_id', '=', self.id)],
+            'domain': [('enrollment_line_ids.course_id', '=', self.id)],
             'context': {
-                'default_course_id': self.id
+                'default_enrollment_line_ids.course_id': self.id
             }
         }

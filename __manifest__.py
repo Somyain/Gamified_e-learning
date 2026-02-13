@@ -7,7 +7,7 @@
                     Gamify learning is the mordern way of learning and applying your knowledge
     """,
     'author' : 'Somya',
-    'depends' : ['base'],
+    'depends' : ['base','sale'],
     'data' : [
         'security/ir.model.access.csv',
         
@@ -18,6 +18,8 @@
         'views/enrollment_views.xml',
         'views/elearn_menu.xml',
         'views/user_views.xml',
+
+        'reports/custom_sale_template.xml',
 
     ],
     'installation':True,

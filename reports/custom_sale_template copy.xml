@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_sale_template">
+        <t t-call="web.basic_layout">
+            <div style="position: relative; height: 100vh;">
+                <div style="position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            font-size: 120px;
+                            font-weight: bold;
+                            color: rgba(150,150,150,0.25);
+                            white-space: nowrap; -webkit-transform: rotate(-30deg); -moz-transform: rotate(-30deg); -ms-transform: rotate(-30deg); -o-transform: rotate(-30deg);">
+                    Codetrade
+                </div>
+            </div>
+            <t t-foreach="docs" t-as="doc">
+
+                <!-- ================= HEADER ================= -->
+                <div style="width:100%; overflow:hidden; page-break-inside:avoid;">
+
+                    <!-- LEFT -->
+                    <div style="width:68%; float:left;">
+
+                        <div style="
+                            background:#d9d9d9;
+                            padding:16px 30px;
+                            font-size:50px;
+                            width:70%;
+                            position:relative;
+                            margin:0;
+                            ">
+                            QUOTATION
+                            <div style="
+                                position:absolute;
+                                right:-60px;
+                                top:0;
+                                width:0;
+                                height:0;
+                                border-bottom:92px solid #d9d9d9;
+                                border-right:60px solid transparent;
+                            "></div>
+                        </div>
+
+                        <div style="
+                            background:#f6a400;
+                            padding:20px;
+                            height:150px;
+                            width:65%;
+                            color:#000;
+                            display:table;
+                            position:relative;
+                            line-height:1.4;
+                            font-size:15px;
+                            ">
+                            <div style="
+                                display:table-cell;
+                                vertical-align:middle;
+                                text-align:left;
+                                ">
+                                <strong>Quotation to:</strong><br/>
+                                <t t-esc="doc.partner_id.name"/><br/>
+
+                                <t t-if="doc.partner_id.street">
+                                    <t t-esc="doc.partner_id.street"/><br/>
+                                </t>
+                                <t t-if="doc.partner_id.city or doc.partner_id.zip">
+                                    <t t-esc="doc.partner_id.city"/>
+                                    <t t-if="doc.partner_id.zip"> <t t-esc="doc.partner_id.zip"/></t><br/>
+                                </t>
+                                <t t-if="doc.partner_id.country_id">
+                                    <t t-esc="doc.partner_id.country_id.name"/><br/>
+                                </t>
+                                <t t-if="doc.partner_id.phone">
+                                    <t t-esc="doc.partner_id.phone"/>
+                                </t>
+                            </div>
+
+                            <div style="
+                                position:absolute;
+                                right:-40px;
+                                top:0;
+                                width:0;
+                                height:0;
+                                border-top:165px solid #f6a400;
+                                border-right:40px solid transparent;
+                            "></div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT HEADER -->
+                    <div style="
+                        width:32%;
+                        float:right;
+                        display:flex;
+                        flex-direction:column;
+                        align-items:flex-end;
+                        ">
+
+                        <!-- LOGO -->
+                        <t t-if="doc.company_id.logo">
+                            <img t-att-src="image_data_uri(doc.company_id.logo)"
+                                style="max-height:70px; margin-bottom:12px;"/>
+                        </t>
+
+                        <!-- DETAILS -->
+                        <table style="
+                            width:240px;
+                            font-size:13px;
+                            line-height:1.6;
+                            border-collapse:collapse;
+                            ">
+                            <tr>
+                                <td style="
+                                    width:110px;
+                                    text-align:left;
+                                    padding-right:2px;
+                                    font-weight:200;
+                                    ">
+                                    Date:
+                                    <span t-field="doc.date_order"
+                                        t-options="{'widget':'date'}"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="
+                                    text-align:left;
+                                    padding-right:2px;
+                                    font-weight:200;
+                                    ">
+                                    Validity:
+                                    <span t-field="doc.validity_date"
+                                        t-options="{'widget':'date'}"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="
+                                    text-align:left;
+                                    padding-right:2px;
+                                    font-weight:200;
+                                    ">
+                                    Quotation No:
+                                    <t t-esc="doc.name"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="clear:both; margin-top:40px;"></div>
+                </div>
+                <main style="position:relative; z-index:1; font-family:Arial, Helvetica, sans-serif;">
+
+                    <!-- ================= PRODUCT TABLE ================= -->
+                    <div style="margin-top:40px;">
+
+                        <div style="border-top:2px solid #c9c9c9; margin-bottom:10px;"></div>
+
+                        <table style="width:100%; border-collapse:collapse; font-size:14px;">
+
+                            <thead>
+                                <tr style="border-bottom:1px solid #c9c9c9; color:#444;">
+                                    <th style="text-align:left; padding:10px 5px;"><strong>Product Description</strong></th>
+                                    <th style="text-align:right; padding:10px 5px;"><strong>Qty.</strong></th>
+                                    <th style="text-align:right; padding:10px 5px;"><strong>Unit Price</strong></th>
+                                    <th style="text-align:right; padding:10px 5px;"><strong>Total</strong></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <t t-foreach="doc.order_line" t-as="line">
+                                    <tr style="border-bottom:1px solid #e0e0e0;">
+                                        <td style="padding:12px 5px;">
+                                            <t t-if="line.product_id.default_code">
+                                                <t t-esc="line.product_id.default_code"/>
+                                                <span style="margin-right:6px;"></span>
+                                            </t>
+                                                <t t-esc="line.name"/>
+                                        </td>
+                                        <td style="padding:12px 5px; text-align:right;">
+                                            <t t-esc="'%.2f' % line.product_uom_qty"/>
+                                        </td>
+                                        <td style="padding:12px 5px; text-align:right;">
+                                            <span t-field="line.price_unit"
+                                                t-options="{'widget':'monetary','display_currency':doc.currency_id}"/>
+                                        </td>
+                                        <td style="padding:12px 5px; text-align:right;">
+                                            <span t-field="line.price_subtotal"
+                                                t-options="{'widget':'monetary','display_currency':doc.currency_id}"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ================= TOTALS ================= -->
+                    <div style="width:100%; margin-top:10px;">
+
+                        <table style="
+                            width:26%;
+                            float:right;
+                            border-collapse:collapse;
+                            font-size:14px;
+                        ">
+
+                            <tr>
+                                <td></td>
+                                <td style="border-top:1.5px solid #000;"></td>
+                            </tr>
+
+                            <tr>
+                                <td>Sub Total</td>
+                                <td style="text-align:right;">
+                                    <t t-esc="doc.currency_id.symbol"/>
+                                    <t t-esc="'{:,.2f}'.format(doc.amount_untaxed)"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Tax</td>
+                                <td style="text-align:right;">
+                                    <t t-esc="doc.currency_id.symbol"/>
+                                    <t t-esc="'{:,.2f}'.format(doc.amount_tax)"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td style="border-top:1px solid #000;"></td>
+                            </tr>
+
+                            <tr>
+                                <td style="font-weight:bold; font-size:16px;">Total</td>
+                                <td style="text-align:right; font-weight:bold; font-size:16px;">
+                                    <t t-esc="doc.currency_id.symbol"/>
+                                    <t t-esc="'{:,.2f}'.format(doc.amount_total)"/>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <div style="clear:both;"></div>
+
+                    </div>
+                    <!-- ================= LOWER SECTION ================= -->
+                    <div style="width:100%; margin-top:20px;">
+
+                        <!-- LEFT SIDE -->
+                    <div style="
+                        width:60%;
+                        float:left;
+                        font-size:14px;
+                        color:#666;
+                        margin-top:-60px;
+                    ">
+                        Thank you for your business
+                    </div>
+
+                        <!-- RIGHT SIDE (Totals already above, so nothing here) -->
+
+                        <div style="clear:both;"></div>
+                    </div>
+
+
+                    <!-- PAYMENT INFO -->
+                    <div style="margin-top:-15px; width:60%;">
+
+                        <h3 style="margin-bottom:8px;">Payment Info:</h3>
+
+                        <div style="line-height:20px; font-size:14px;">
+                            <strong>Account No:</strong> 03220200002128<br/>
+                            <strong>Ac Name:</strong> Your Company<br/>
+                            <strong>Bank Name:</strong> Bank of Baroda<br/>
+                            <strong>Bank Details:</strong> NEFT/RTGS BARBOBHADRA
+                        </div>
+
+                    </div>
+
+
+                    <!-- TERMS -->
+                    <div style="margin-top:20px; width:85%;">
+
+                        <h3 style="margin-bottom:8px;">Terms and Conditions</h3>
+
+                        <div style="font-size:13px; line-height:20px; color:#555;">
+                            Prices are ex.Godown Ahmedabad and all other charges are extra.<br/>
+                            Freight Insurance transportation extra at actual.<br/>
+                            100% Advance along with the Order. Warranty One Year against all Manufacturing Defects.<br/>
+                            Order confirmed can not be canceled.
+                        </div>
+
+                    </div>
+
+
+                    <!-- COMPANY ADDRESS -->
+                    <div style="margin-top:30px; font-size:14px;">
+                        <strong><t t-esc="doc.company_id.name"/></strong><br/>
+
+                        <t t-if="doc.company_id.street">
+                            <t t-esc="doc.company_id.street"/><br/>
+                        </t>
+
+                        <t t-if="doc.company_id.street2">
+                            <t t-esc="doc.company_id.street2"/><br/>
+                        </t>
+
+                        <t t-if="doc.company_id.city">
+                            <t t-esc="doc.company_id.city"/>
+                        </t>
+                        <t t-if="doc.company_id.zip">
+                            , <t t-esc="doc.company_id.zip"/>
+                        </t>
+                        <br/>
+
+                        <t t-if="doc.company_id.state_id">
+                            <t t-esc="doc.company_id.state_id.name"/><br/>
+                        </t>
+
+                        <t t-if="doc.company_id.country_id">
+                            <t t-esc="doc.company_id.country_id.name"/>
+                        </t>
+                    </div>
+
+                    <!-- ================= FOOTER STRIP ================= -->
+                    <footer>
+                        <!-- Top Line -->
+                        <div style="
+                            margin-top:15px;
+                            border-top:1px solid #cfcfcf;
+                            width:100%;
+                        "></div>
+
+                        <div style="
+                            position:relative;
+                            width:100%;
+                            height:70px;
+                        ">
+                            <div style="
+                                position:absolute;
+                                right:0;
+                                top:0;
+                                width:45%;
+                                height:60px;
+                                background:#f6a400;
+                                text-align:center;
+                                line-height:60px;
+                                font-size:13px;
+                                z-index:2;
+                            ">
+
+                                <!-- Slant -->
+                                <div style="
+                                    position:absolute;
+                                    left:-45px;
+                                    top:0;
+                                    width:0;
+                                    height:0;
+                                    border-bottom:60px solid #f6a400;
+                                    border-left:45px solid transparent;
+                                "></div>
+                                <div style="
+                                    text-align:center;
+                                    line-height:60px;
+                                    font-size:13px;
+                                ">
+                                    <t t-if="doc.company_id.website">
+                                        <t t-esc="doc.company_id.website"/>
+                                    </t>
+                                </div>
+                            </div>
+                            <div style="
+                                background:#d9d9d9;
+                                left:0;
+                                top:0;
+                                height:52px;
+                                width:70%;
+                                text-align:center;
+                                padding-left:20px;
+                                box-sizing:border-box;
+                                font-size:13px;
+                                z-index:1;
+                            ">
+                                <t t-if="doc.company_id.phone">
+                                    <t t-esc="doc.company_id.phone"/>
+                                </t>
+                                <t t-if="doc.company_id.email">
+                                    <t t-esc="doc.company_id.email"/>
+                                </t>
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </footer>
+                </main>
+            </t>
+        </t>
+    </template>
+</odoo>

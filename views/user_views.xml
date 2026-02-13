@@ -18,7 +18,7 @@
                     <group string="Enrollments">
                         <field name="enrollment_ids">
                             <list>
-                                <field name="course_id"/>
+                                <!-- <field name="course_id"/> -->
                                 <field name="state"/>
                                 <field name="enroll_date"/>
                             </list>

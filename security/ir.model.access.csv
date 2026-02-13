@@ -2,3 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_elearn_course,access_elearn_course,model_elearn_course,,1,1,1,1
 access_elearn_lesson,access_elearn_lesson,model_elearn_lesson,,1,1,1,1
 access_elearn_enrollment,access_elearn_enrollment,model_elearn_enrollment,,1,1,1,1
+access_elearn_enrollment_line_user,elearn.enrollment.line user,model_elearn_enrollment_line,base.group_user,1,1,1,0
+access_elearn_enrollment_line_manager,elearn.enrollment.line manager,model_elearn_enrollment_line,base.group_system,1,1,1,1

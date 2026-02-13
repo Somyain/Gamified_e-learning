@@ -27,15 +27,15 @@
                     </group>
                     <notebook>
                         <page string="Lesson">
-                            <field name="lesson_ids">
-                                <list editable="bottom">
-                                    <field name="name"/>
+                            <field name="lesson_ids" readonly="1">
+                                <list>
+                                    <field name="name" />
                                 </list>
                             </field>
                         </page>
                         <page string="Enrollment">
-                            <field name="enrollment_ids">
-                                <list editable="bottom">
+                            <field name="enrollment_ids" readonly="1">
+                                <list>
                                     <field name="user_id"/>
                                     <field name="state"/>
                                     <field name="enroll_date"/>

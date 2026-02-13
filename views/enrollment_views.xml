@@ -28,7 +28,7 @@
         <field name="name">elearn.enrollment.form</field>
         <field name="model">elearn.enrollment</field>
         <field name="arch" type="xml">
-            <form>
+            <form string="Course Enrollment">
                 <sheet>
                     <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px;">
                         <field name="student_image" widget="image"/>
@@ -36,15 +36,19 @@
                     <group>
                         <field name="user_id"/>
                         <field name="email"/>
-                        <field name="course_id"/>
-                        <field name="state"/>
                         <field name="enroll_date"/>
+                        <field name="state"/>
+                        <field name="enrollment_line_ids">
+                            <list editable="bottom">
+                                <field name="course_id"/>
+                            </list>
+                        </field>
                     </group>
                     <notebook>
-                        <page string="Lesson">
-                            <field name="lesson_ids">
-                                <list editable="bottom">
-                                    <field name="name"/>
+                        <page string="Lessons">
+                            <field name="enrollment_line_ids" readonly="1">
+                                <list>
+                                    <field name="lesson_ids" widget="many2many_tags"/>
                                     <field name="course_id"/>
                                 </list>
                             </field>
@@ -61,7 +65,6 @@
         <field name="arch" type="xml">
             <list>
                 <field name="user_id"/>
-                <field name="course_id"/>
                 <field name="state"/>
                 <field name="enroll_date"/>
             </list>

@@ -25,9 +25,9 @@ class ElearnCourse(models.Model):
             'name':'Lessons',
             'res_model':'elearn.lesson',
             'view_mode': 'list,form',
-            'domain': [('enrollment_line_ids.course_id', '=', self.id)],
+            'domain': [('course_id', '=', self.id)],
             'context': {
-                'default_enrollment_line_ids.course_id': self.id
+                'default_course_id': self.id
             }
         }
 
@@ -44,7 +44,5 @@ class ElearnCourse(models.Model):
             'res_model': 'elearn.enrollment',
             'view_mode': 'list,form',
             'domain': [('enrollment_line_ids.course_id', '=', self.id)],
-            'context': {
-                'default_enrollment_line_ids.course_id': self.id
-            }
+            'context': {}
         }

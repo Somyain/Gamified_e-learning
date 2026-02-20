@@ -20,7 +20,6 @@
         'views/user_views.xml',
 
         'reports/custom_sale_template.xml',
-
     ],
     'installation':True,
     'appliation' :True,
